@@ -6,13 +6,9 @@ import {GalleryComponent} from './gallery/gallery.component';
 
 @Component({
   selector: 'my-app',
-  template: `
-    <h1 class="title">Didier Brault</h1>
-    <nav>
-    </nav>
-    <router-outlet></router-outlet>
-  `,
-  directives: [ROUTER_DIRECTIVES]
+  templateUrl: '/app/app.html',
+  styleUrls: ['app/app.css'],
+	directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
 

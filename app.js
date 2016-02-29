@@ -20,6 +20,7 @@ console.log('terminé');
 var express = require('express');
 var app = express();
 var path = require('path');
+app.use("/public", express.static(__dirname + '/public'));
 app.use("/angular2", express.static(__dirname + '/node_modules/angular2'));
 app.use("/node_modules", express.static(__dirname + '/node_modules'));
 
