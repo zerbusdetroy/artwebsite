@@ -20,10 +20,15 @@ console.log('terminé');
 var express = require('express');
 var app = express();
 var path = require('path');
+app.use("/angular2", express.static(__dirname + '/node_modules/angular2'));
 app.use("/node_modules", express.static(__dirname + '/node_modules'));
+
 app.use("/app", express.static(__dirname + '/app'));
-// viewed at http://localhost:8080
+
 app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
+app.get('/gallery', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
