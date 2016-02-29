@@ -1,8 +1,4 @@
 var mongoose = require('mongoose');
-var pictureSchema = require('./picture-schema');
+var workSchema = require('./work-schema');
 
-module.exports = mongoose.model('Work',{
-    name: String,
-    description: String,
-    pictures: [ pictureSchema ]
-});
+module.exports = mongoose.model('Work',workSchema);
