@@ -5,6 +5,6 @@ export interface Work {
 	id: number;
 	title: string;
     description: string;
-    //pictures: [Picture];
-    //minpic: Picture;
+    pictures: [Picture];
+    minpic: Picture;
 }

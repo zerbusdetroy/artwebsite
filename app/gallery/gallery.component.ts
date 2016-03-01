@@ -6,7 +6,7 @@ import {Work} from '../models/work';
     templateUrl: '/app/gallery/gallery.html',
     styleUrls: ['app/gallery/gallery.css']
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit{
 
 	works: Work[];
     constructor(
@@ -18,6 +18,6 @@ export class GalleryComponent {
     }
 
     getWorks() {
-		this.works = this._workService.getWorks();
+		this._workService.getWorks().then(works => this.works = works);
 	}
 }
