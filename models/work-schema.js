@@ -1,9 +1,10 @@
-var mongoose = require('mongoose');
-var pictureSchema = require('./picture-schema');
+var mongoose = require('mongoose'), Schema = mongoose.Schema;
 
 module.exports = new mongoose.Schema({
     title: String,
     description: String,
-    pictures: [ pictureSchema ],
-    minpic : pictureSchema
+    types : [String],
+    groupes : [String],
+    pictures: [ String ],
+    minpic : String
 });
