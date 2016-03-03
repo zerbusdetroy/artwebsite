@@ -9,6 +9,7 @@ import {Work} from '../models/work';
 export class GalleryComponent implements OnInit{
 
 	works: Work[];
+	errorMessage: string;
     constructor(
 		private _workService: WorkService,
         private _router: Router) { }
@@ -18,6 +19,9 @@ export class GalleryComponent implements OnInit{
     }
 
     getWorks() {
-		this._workService.getWorks().then(works => this.works = works);
+    	this._workService.getWorks()
+             .subscribe(
+               works => this.works = works,
+               error =>  this.errorMessage = <any>error);
 	}
 }

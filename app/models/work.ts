@@ -5,6 +5,8 @@ export interface Work {
 	id: number;
 	title: string;
     description: string;
-    pictures: [Picture];
-    minpic: Picture;
-}
+    types : [string];
+    groups : [string];
+    pictures: [string];
+    minpic: string;
+};

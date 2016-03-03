@@ -12,6 +12,13 @@ app.use("/angular2", express.static(__dirname + '/node_modules/angular2'));
 app.use("/node_modules", express.static(__dirname + '/node_modules'));
 
 app.use("/app", express.static(__dirname + '/app'));
+app.get('/works', function (req, res, next) {
+  console.log('User ask for works');
+  Work.find(function(err, todo){
+    if(err) res.send(err);
+    res.json(todo);
+  });
+});
 app.get('/works/:id', function (req, res, next) {
   Work.findById(req.params.id, function(err, todo){
     if(err) res.send(err);
