@@ -3,7 +3,7 @@
 	<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
 	<section class="row" *ngFor="#work of works">
 	<section class="col-lg-1  col-md-2">
-			Work :{{work.description}}, types : <span *ngFor="#type of work.types">{{type}}</span>, 
+			Work :{{work.title}}, description : {{work.description}}, types : <span *ngFor="#type of work.types">{{type}}</span>, 
 			groups : <span *ngFor="#group of work.groups">{{group}}</span>, 
 		</section>
 		<section class="col-lg-11  col-md-10">

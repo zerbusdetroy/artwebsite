@@ -8,11 +8,7 @@ var express = require('express')
 var path = require('path');
 
 
-var bodyParser = require('body-parser');
-// configure app to use bodyParser()
-// this will let us get the data from a POST
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+
 
 
 // TODO remove middleware here

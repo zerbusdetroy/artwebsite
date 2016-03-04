@@ -14,7 +14,6 @@ var router = express.Router();
 // app.use(require('./middlewares/users'))
 app.use(require('./controllers/index.controller'));
 
-
 app.listen(portNb,function(){
   console.log("Live at Port "+portNb);
 });
