@@ -24,4 +24,12 @@ export class GalleryComponent implements OnInit{
                works => this.works = works,
                error =>  this.errorMessage = <any>error);
 	}
+
+	addWork (title: string) {
+	  if (!title) {return;}
+	  this._workService.addHWork(title)
+	                   .subscribe(
+	                     work  => this.works.push(work),
+	                     error =>  this.errorMessage = <any>error);
+	}
 }

@@ -1,5 +1,6 @@
 import {Injectable}     from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Http, Response, Headers, RequestOptions} from 'angular2/http';
+import {} from 'angular2/http';
 import {Work}           from '../models/work';
 import {Observable}     from 'rxjs/Observable';
 
@@ -14,8 +15,11 @@ export class WorkService {
 
 	constructor (private http: Http) {}
 
-	private _worksUrl = '/works';  // URL to web api
+	private _worksUrl = '/rest/works';  // URL to web api
 
+	/**
+	 * Get all works form the server
+	 */
 	getWorks () {
 		return this.http.get(this._worksUrl)
 	  	.map(res => <Work[]> res.json())
@@ -30,5 +34,20 @@ export class WorkService {
 	    console.error(error);
 	    return Observable.throw(error.json().error || 'Server error');
 	}
+
+	/**
+	 * Save a work into the database
+	 * TODO : add security to accept only admin users for this action
+	 */
+	addWork (title: string) : Observable<Work>  {
+
+	   let body = JSON.stringify({ title });
+	   let headers = new Headers({ 'Content-Type': 'application/json' });
+	   let options = new RequestOptions({ headers: headers });
+
+	   return this.http.post(this._worksUrl, body, options)
+	                   .map(res =>  <Work> res.json().data)
+	                   .catch(this.handleError)
+	 }
 
 }
