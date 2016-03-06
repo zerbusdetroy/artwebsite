@@ -39,9 +39,10 @@ export class WorkService {
 	 * Save a work into the database
 	 * TODO : add security to accept only admin users for this action
 	 */
-	addWork (title: string) : Observable<Work>  {
+	addWork (title: string, description: string, types: [string], groups: [string], pictures: [string], minpic: string) : Observable<Work>  {
 
-	   let body = JSON.stringify({ title });
+	   let body = JSON.stringify({ title, description, types, groups, pictures, minpic });
+	   // TODO add pictures
 	   let headers = new Headers({ 'Content-Type': 'application/json' });
 	   let options = new RequestOptions({ headers: headers });
 
