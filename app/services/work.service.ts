@@ -15,10 +15,10 @@ export class WorkService {
 
 	constructor (private http: Http) {}
 
-	private _worksUrl = '/rest/works';  // URL to web api
+	private _worksUrl = '/api/works';  // URL to web api
 
 	/**
-	 * Get all works form the server
+	 * Get all works frorm the server
 	 */
 	getWorks () {
 		return this.http.get(this._worksUrl)

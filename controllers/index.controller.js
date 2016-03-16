@@ -8,26 +8,15 @@ var express = require('express')
 var path = require('path');
 
 
-
-
-
-// TODO remove middleware here
-// middleware to use for all requests
-router.use(function(req, res, next) {
-    // do nothing for now
-    
-    next(); // make sure we go to the next routes and don't stop here
-});
-
-
 // Static geters
 router.use("/public", express.static(__dirname + '/../public'));
 router.use("/angular2", express.static(__dirname + '/../node_modules/angular2'));
 router.use("/node_modules/angular2", express.static(__dirname + '/../node_modules/angular2'));
+router.use("/node_modules/ng2-file-upload", express.static(__dirname + '/../node_modules/ng2-file-upload'));
 router.use("/app", express.static(__dirname + '/../app'));
 
 // All rest request are managed by a specific controller
-router.use('/rest', require('./api.controller'));
+router.use('/api', require('./api.controller'));
 
 
 // Every other get route send index.html

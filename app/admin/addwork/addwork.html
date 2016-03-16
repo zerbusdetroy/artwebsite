@@ -10,15 +10,100 @@
 			<label for="description">Description :</label>
 			 <textarea class="form-control" rows="5" id="description"></textarea>
 		</div>
+		<div (click)="test()">TEST</div>
 		<div class="form-group">
 			<label>Types:</label>
 			<label class="checkbox-inline"><input type="checkbox" name="types" value="sculpture">Sculpture</label>
 			<label class="checkbox-inline"><input type="checkbox" name="types" value="draft">Dessin</label>
 			<label class="checkbox-inline"><input type="checkbox" name="types" value="painting">Peinture</label>
 		</div>
-		<div class="checkbox">
-			<label><input type="checkbox"> Remember me</label>
+		<div class="form-group">
+			<label>Groupes :</label>
+			<label class="checkbox-inline" *ngFor="#group of groups">
+				<input type="checkbox" name="groups" value="{{group.name}}">{{group.name}}</label>
 		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
+		<label>Pictures :
+			<div ng2-file-drop
+                 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                 (file-over)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 class="well my-drop-zone">
+                Cliquez ici ou glissez / déposez
+            </div>
+
+
+            Sélectionner les fichiers
+            <input type="file" ng2-file-select [uploader]="uploader" multiple  /><br/>
+
+		</label>
+		<div class="col-md-9" style="margin-bottom: 40px">
+
+            <h3>Images à uploader :</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th>Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="#item of uploader.queue">
+                    <td><strong>{{item.file.name}}</strong></td>
+                    <td *ngIf="uploader.isHTML5" nowrap>{{item.file.size/1000000}} MB</td>
+                    <td *ngIf="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button" class="btn btn-success btn-xs"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Uploader
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Anuler
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs"
+                                (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Retirer
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div>
+                    Progression générale :
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Tout charger
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Tout annuler
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Tout supprimer
+                </button>
+            </div>
+
+        </div>
+		<button type="submit" class="btn btn-default">Envoyer</button>
 	</form>
 </div>

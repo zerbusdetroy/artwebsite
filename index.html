@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- IE required polyfills, in this exact order -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.33.3/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
 
     <script src="https://code.angularjs.org/2.0.0-beta.7/angular2-polyfills.js"></script>
@@ -27,7 +27,13 @@
         System.config({
             transpiler: 'typescript',
             typescriptOptions: { emitDecoratorMetadata: true },
-            packages: {'app': {defaultExtension: 'ts'}}
+            packages: {'app': {defaultExtension: 'ts'},
+          'node_modules/ng2-file-upload': {},
+          'node_modules/ng2-bootstrap': {}},
+        paths: {
+            "ng2-file-upload": "node_modules/ng2-file-upload/ng2-file-upload",
+            "ng2-bootstrap"  : "node_modules/ng2-bootstrap/ng2-bootstrap"
+        }
         });
         System.import('app/main')
                 .then(null, console.error.bind(console));

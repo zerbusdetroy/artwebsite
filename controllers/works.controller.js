@@ -1,5 +1,6 @@
 var express = require('express')
 , router = express.Router();
+var app = express();
   /* TODO add auth middleware for post
   , auth = require('../middlewares/auth')*/
 
@@ -25,6 +26,26 @@ var express = require('express')
 
   var Work = require('../models/work');
 
+
+router.get('/test', function (req, res) {
+	console.log('get test ');
+  res.end('file catcher example');
+});
+
+ var cpUpload = upload.fields([{ name: 'file', maxCount: 3 }/*, { name: 'minpic', maxCount: 1 }*/]);
+
+router.post('/test',cpUpload,function (req, res) {
+	console.log('here');
+	if(!req.files || !req.files.file){
+		res.status(400).json({error : "L'image n'a pas été chargée, merci de vérifier qu'il s'agit d'un ficher JPG"});
+	}
+	else {
+		res.json(req.files);
+	}
+	
+});
+
+
 /**
  * Get all works
  */
@@ -46,7 +67,6 @@ var express = require('express')
  	});
  });
 
- var cpUpload = upload.fields([{ name: 'pictures', maxCount: 3 }, { name: 'minpic', maxCount: 1 }]);
 
 /**
  * Send a new Work

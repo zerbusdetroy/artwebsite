@@ -1,15 +1,27 @@
- <header class="page-header">
- 	<nav class="navbar navbar-default">
- 		<div class="container-fluid">
- 			<div class="navbar-header">
- 				<a class="navbar-brand" href="#">Didier brault</a>
- 			</div>
- 			<ul class="nav navbar-nav">
- 				<li><a [routerLink]="['Home']">Home</a></li>
- 				<li><a [routerLink]="['Gallery']">Gallery</a></li>
- 				<li><a [routerLink]="['AddWork']">Ajouter une oeuvre</a></li>
- 			</ul>
- 		</div>
+
+
+<header class="page-header">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Didier brault</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a [routerLink]="['Home']">Home</a></li>
+				<li><a [routerLink]="['Gallery']">Gallery</a></li>
+				<li><a [routerLink]="['AddWork']">Ajouter une oeuvre</a></li>
+			</ul>
+		</div>
 	</nav>
- </header>	
- <router-outlet></router-outlet>
+</header>	
+<container>
+		<div class="alert alert-danger" *ngFor="#message of _manageErrorService.errorMessageList; #i = index">
+			<div class="glyphicon glyphicon-remove" (click)="removeMessage(i)"></div>
+			<strong>Error : </strong> {{message}}
+			
+		</div>
+	
+</container>
+<container>
+	<router-outlet></router-outlet>
+</container>

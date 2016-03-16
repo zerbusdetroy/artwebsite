@@ -11,10 +11,13 @@ router.use(bodyParser.json());
 */
 
 var express = require('express')
-  , router = express.Router(),
-  workController = require('./works.controller');
+  , router = express.Router();
+var worksController = require('./works.controller');
+var groupsController = require('./groups.controller');
 
-router.use('/works', workController);
+router.use('/works', worksController);
+router.use('/groups', groupsController);
+
 
 // Handle 404 error
 router.use("*",function(req,res){

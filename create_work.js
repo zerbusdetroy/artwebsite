@@ -30,8 +30,15 @@ process.on('SIGINT', function() {
   }); 
 }); 
 
-
-
+var Group = require('./models/group');
+var work1 = new Work({_id : 'Exposition 1'});
+work1.save(function (err){
+	if(err) console.log(err);
+})
+var work2 = new Work({_id : 'Exposition 2'});
+work1.save(function (err){
+	if(err) console.log(err);
+})
 var Work = require('./models/work');
 
 var work = new Work({name : 'oeuvre test', description : 'desc', minpic : 'public/img/63a.jpg'});
